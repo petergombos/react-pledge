@@ -1,6 +1,6 @@
 {
   "name": "react-pledge",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Declarative way to track promise states",
   "main": "index.js",
   "module": "es/index.js",
@@ -32,6 +32,7 @@
     "pretty-bytes": "^4.0.2",
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
+    "regenerator-runtime": "^0.11.1",
     "render-markdown-js": "^1.3.0",
     "rollup": "^0.56.3",
     "rollup-plugin-babel": "^3.0.3",
@@ -46,7 +47,7 @@
     "type": "git",
     "url": "git+https://github.com/petergombos/react-pledge.git"
   },
-  "keywords": ["react", "promise", "react component"],
+  "keywords": ["react", "promise"],
   "eslintConfig": {
     "extends": "react-app"
   }

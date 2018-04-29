@@ -1,4 +1,5 @@
-import { Component } from "react";
+import 'regenerator-runtime/runtime'
+import { Component } from 'react'
 
 const initialState = {
   pending: false,
@@ -6,58 +7,59 @@ const initialState = {
   rejected: false,
   value: null,
   error: null
-};
+}
 
 class Track extends Component {
-  state = initialState;
+  state = initialState
 
   componentDidMount() {
-    this.mounted = true;
+    this.mounted = true
   }
 
   componentWillUnmount() {
-    this.mounted = false;
+    this.mounted = false
   }
 
   triggerPromise = async (...args) => {
-    const { promise } = this.props;
-    const isMounted = this.mounted;
+    const { promise } = this.props
+    const isMounted = this.mounted
 
     isMounted &&
       this.setState({
+        ...initialState,
         pending: true
-      });
+      })
 
     try {
-      const value = await promise(...args);
+      const value = await promise(...args)
       isMounted &&
         this.setState({
+          ...initialState,
           value,
-          pending: false,
           resolved: true
-        });
+        })
     } catch (error) {
       isMounted &&
         this.setState({
+          ...initialState,
           error,
-          pending: false,
           rejected: true
-        });
+        })
     }
-  };
+  }
 
   render() {
-    const { render, children } = this.props;
-    const callback = render || children;
-    if (typeof callback !== "function") {
-      throw Error("Props `render` or `children` must be a function.");
+    const { render, children, promise } = this.props
+    const callback = render || children
+    if (typeof callback !== 'function') {
+      throw Error('Props `render` or `children` must be a function.')
     }
-    if (typeof promise !== "function") {
-      throw Error("The prop `promise` is required.");
+    if (!promise instanceof Promise) {
+      throw Error('The prop `promise` is required.')
     }
 
-    return callback(this.triggerPromise, this.state);
+    return callback(this.triggerPromise, this.state)
   }
 }
 
-export default Track;
+export default Track
