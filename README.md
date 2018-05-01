@@ -1,10 +1,10 @@
-# React Pledge 🕴
+# React Pledge
 
 Declarative way to track promise lifecycle states using "render props" 🕶
 
 ✅ Zero dependencies
 
-✅ [**3.2k gzipped**](https://bundlephobia.com/result?p=react-pledge)
+✅ Tiny **896 B gzipped**
 
 ## Usage
 

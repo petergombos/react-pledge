@@ -1,4 +1,3 @@
-import 'regenerator-runtime/runtime'
 import { Component } from 'react'
 
 const initialState = {
@@ -20,7 +19,7 @@ class Track extends Component {
     this.mounted = false
   }
 
-  triggerPromise = async (...args) => {
+  triggerPromise = (...args) => {
     const { promise } = this.props
     const isMounted = this.mounted
 
@@ -30,22 +29,23 @@ class Track extends Component {
         pending: true
       })
 
-    try {
-      const value = await promise(...args)
-      isMounted &&
-        this.setState({
-          ...initialState,
-          value,
-          resolved: true
-        })
-    } catch (error) {
-      isMounted &&
-        this.setState({
-          ...initialState,
-          error,
-          rejected: true
-        })
-    }
+    return promise(...args)
+      .then(value => {
+        isMounted &&
+          this.setState({
+            ...initialState,
+            value,
+            resolved: true
+          })
+      })
+      .catch(error => {
+        isMounted &&
+          this.setState({
+            ...initialState,
+            error,
+            rejected: true
+          })
+      })
   }
 
   render() {
