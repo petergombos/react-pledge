@@ -59,7 +59,7 @@ describe('react-pledge', () => {
     expect(reject.find('span').text()).toEqual('failed')
   })
 
-  it('should throw an error if the supplied `promise` prop is not a valid Promise', () => {
+  it('should throw an error there is no render function or children function defined', () => {
     expect(() => {
       shallow(<Track promise={submitResolve} />)
     }).toThrowError(
