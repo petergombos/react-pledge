@@ -52,9 +52,12 @@ class Track extends Component {
     const { render, children, promise } = this.props
     const callback = render || children
     if (typeof callback !== 'function') {
-      throw Error('Props `render` or `children` must be a function.')
+      throw Error(
+        'One of the props: `render` or `children` must be defined and it must be a function.'
+      )
     }
-    if (!promise instanceof Promise) {
+
+    if (!promise) {
       throw Error('The prop `promise` is required.')
     }
 
